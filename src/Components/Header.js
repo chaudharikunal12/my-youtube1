@@ -1,10 +1,18 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../utils/AppSlice";
 
 const Header = () => {
+    const dispatch = useDispatch()
+
+    const toggleHandler = ()=>{
+        dispatch(toggleMenu())
+    }
   return (
     <div className="grid grid-flow-col  p-5 m-2 shadow-lg">
       <div className="flex col-span-1">
         <img
+        onClick={()=>toggleHandler()}
           className="h-7"
           src="data:image/png;base64,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"
           alt="HamburgerImg"
